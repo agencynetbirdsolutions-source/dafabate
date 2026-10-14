@@ -32,7 +32,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
 
 /* ===== FULL-SCREEN PHONE BANNER (landing par aate hi poori screen) ===== */
-.screen-banner{position:relative;width:100%;height:100vh;height:100dvh;min-height:420px;overflow:hidden;background:var(--ink);isolation:isolate;animation:bannerIn .8s ease both}
+.screen-banner{position:relative;width:100%;height:100vh;height:100dvh;min-height:420px;overflow:hidden;background:#000;isolation:isolate;animation:bannerIn .8s ease both}
 .sb-bg{position:absolute;inset:-30px;background-size:cover;background-position:center;filter:blur(26px) brightness(.75);z-index:0}
 .sb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:1;display:block}
 .sb-link{position:absolute;inset:0;z-index:2;display:block}
@@ -44,7 +44,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .sb-controls{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;padding:56px 16px calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,rgba(10,12,18,.82),rgba(10,12,18,0));pointer-events:none}
 .sb-controls a{pointer-events:auto}
 .sb-controls .btn-wa{min-height:54px;width:min(100%,380px)}
-.scroll-hint{color:#fff;font-weight:600;font-size:15px;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:0;padding:4px 14px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.scroll-hint{position:absolute;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:3;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.45);display:grid;place-items:center;text-decoration:none}
 .scroll-hint svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2.5;animation:bob 1.4s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 @keyframes bannerIn{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
@@ -87,6 +87,29 @@ h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--sun) 62
 @keyframes glint{0%,100%{transform:scale(.9);opacity:.85}50%{transform:scale(1.12);opacity:1}}
 .flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:3;pointer-events:none;animation:flash 5s ease-in-out infinite}
 @keyframes flash{0%,46%,56%,100%{opacity:0}50%{opacity:.75}}
+
+
+/* ===== BIG HIGHLIGHTS ===== */
+.big{display:grid;grid-template-columns:1fr;gap:0}
+.big-item{padding:34px 20px;text-align:center;border-bottom:4px solid var(--ink)}
+.big-item:last-child{border-bottom:0}
+.big-item .num{display:block;font-family:var(--display);font-weight:800;font-size:clamp(68px,22vw,150px);line-height:.95;letter-spacing:-.04em}
+.big-item .cap{display:block;font-family:var(--display);font-weight:700;font-size:clamp(22px,6.4vw,38px);line-height:1.1;margin-top:8px}
+.big-item .sub{display:block;font-size:clamp(15px,4vw,18px);margin-top:8px;opacity:.85}
+.b1{background:var(--sun);color:var(--ink)}
+.b2{background:var(--cobalt);color:#fff}
+.b3{background:var(--ink);color:#fff}
+.b3 .num{color:var(--sun)}
+.b1 .num{animation:pop 2.4s ease-in-out infinite}
+.b2 .num{animation:pop 2.4s ease-in-out .8s infinite}
+.b3 .num{animation:pop 2.4s ease-in-out 1.6s infinite}
+@keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.big-cta{background:var(--paper);padding:24px 20px;display:flex;justify-content:center}
+@media (min-width:760px){
+  .big{grid-template-columns:repeat(3,1fr)}
+  .big-item{border-bottom:0;border-right:4px solid var(--ink);padding:56px 24px}
+  .big-item:last-child{border-right:0}
+}
 
 /* ===== film strip marquee ===== */
 .strip{background:var(--ink);color:#fff;overflow:hidden;position:relative;padding:22px 0;border-block:6px solid var(--ink)}
@@ -175,13 +198,9 @@ footer{padding:36px 0 110px;margin-top:44px;border-top:2px solid var(--ink);colo
      Image ka naam: dafabate.png  (isi folder mein index.html ke saath rakhein) -->
 <section class="screen-banner" id="topBanner">
   <div class="sb-bg" style="background-image:url('dafabate.png')"></div>
-  <img class="sb-img" src="dafabate.png" alt="Dafabate Enterprises photography offer" onerror="document.getElementById('topBanner').classList.add('no-img');this.style.display='none'">
-  <div class="sb-fallback"><strong>Dafabate Enterprises</strong><span>Professional Photography Services</span></div>
-  <a class="sb-link" href="https://wa.me/15554703730?text=I%20Want%20Online%20%21D" target="_blank" rel="noopener" aria-label="Dafabate Enterprises: chat on WhatsApp"></a>
-  <div class="sb-controls">
-    <a class="btn-wa" href="https://wa.me/15554703730?text=I%20Want%20Online%20%21D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Chat on WhatsApp</a>
-    <a class="scroll-hint" href="#home">Services dekhein<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></a>
-  </div>
+  <img class="sb-img" src="dafabate.png" alt="Dafabate Enterprises" onerror="this.style.display='none'">
+  <a class="sb-link" href="https://wa.me/15554703730?text=I%20Want%20Online%20%21D" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"></a>
+  <a class="scroll-hint" href="#home" aria-label="Scroll down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></a>
 </section>
 
 <header id="home">
@@ -190,7 +209,7 @@ footer{padding:36px 0 110px;margin-top:44px;border-top:2px solid var(--ink);colo
       <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#12141A"/><circle cx="16" cy="16" r="9" fill="none" stroke="#FFC93C" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="#2447F5"/></svg>
       Dafabate Enterprises
     </a>
-    <a class="head-cta" href="https://wa.me/15554703730?text=I%20Want%20Online%20%21D" target="_blank" rel="noopener">Book Now</a>
+    <a class="head-cta" href="https://wa.me/15554703730?text=I%20Want%20Online%20%21D" target="_blank" rel="noopener">Get Offer</a>
   </div>
 </header>
 
@@ -204,7 +223,7 @@ footer{padding:36px 0 110px;margin-top:44px;border-top:2px solid var(--ink);colo
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           Chat on WhatsApp
         </a>
-        <p class="hero-note">Pricing pehle hi bata di jati hai. Koi hidden charge nahi.</p>
+        <p class="hero-note">12% discount · 24/7 support · Instant offer. Pricing pehle hi bata di jati hai.</p>
       </div>
 
       <div class="finder" aria-hidden="true">
@@ -224,6 +243,15 @@ footer{padding:36px 0 110px;margin-top:44px;border-top:2px solid var(--ink);colo
         <div class="flash"></div>
       </div>
     </div>
+  </section>
+
+  <section class="big-wrap" aria-label="Our offers">
+    <div class="big">
+      <div class="big-item b1"><span class="num" id="n12">12%</span><span class="cap">Discount</span><span class="sub">Apni booking par seedha 12% off</span></div>
+      <div class="big-item b2"><span class="num">24/7</span><span class="cap">Support</span><span class="sub">Din ho ya raat, WhatsApp par hum hazir hain</span></div>
+      <div class="big-item b3"><span class="num">Instant</span><span class="cap">Get Your Offer</span><span class="sub">Message karein aur offer turant paayein</span></div>
+    </div>
+    <div class="big-cta"><a class="btn-wa" href="https://wa.me/15554703730?text=I%20Want%20Online%20%21D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Get Your Offer Now</a></div>
   </section>
 
   <div class="strip" aria-hidden="true">
@@ -291,6 +319,10 @@ footer{padding:36px 0 110px;margin-top:44px;border-top:2px solid var(--ink);colo
       <details>
         <summary>Booking kaise hoti hai?</summary>
         <p>WhatsApp par message karein, date aur package tay hone ke baad advance payment se booking confirm hoti hai.</p>
+      </details>
+      <details>
+        <summary>12% discount kaise milega?</summary>
+        <p>WhatsApp par message karke offer maangein. Booking confirm hone par 12% discount aapke package ke rate par lagu ho jata hai.</p>
       </details>
       <details>
         <summary>Rate kitne hote hain?</summary>
@@ -415,6 +447,13 @@ footer{padding:36px 0 110px;margin-top:44px;border-top:2px solid var(--ink);colo
       <li>Travel, accommodation or other extra costs, if any, will be told to you in advance.</li>
     </ul>
 
+    <h3>3A. 12% discount offer</h3>
+    <ul>
+      <li>A 12% discount is available on the package price when you request the offer on WhatsApp and confirm your booking.</li>
+      <li>The discount applies to the package price only and cannot be exchanged for cash.</li>
+      <li>We may change or withdraw the offer in future, but any booking already confirmed at a discounted price will be honoured.</li>
+    </ul>
+
     <h3 id="terms-refund">4. Cancellation, rescheduling and refund policy</h3>
     <ul>
       <li>You may reschedule your shoot once, subject to our availability, with at least 7 days' notice.</li>
@@ -447,7 +486,7 @@ footer{padding:36px 0 110px;margin-top:44px;border-top:2px solid var(--ink);colo
     <p>We take reasonable care to protect your files and equipment, but in the rare case of loss of files due to unforeseen technical failure, our liability is limited to the amount you paid for the affected service. We are not liable for indirect or consequential losses.</p>
 
     <h3>9. Customer support</h3>
-    <p>You can contact us on WhatsApp for questions or support. We aim to reply as quickly as possible.</p>
+    <p>Our WhatsApp support is open 24/7. Response times may vary with volume, and we aim to reply as quickly as possible.</p>
 
     <h3>10. Third-party services</h3>
     <p>WhatsApp and other third-party platforms operate under their own terms. We are not responsible for their services or policies.</p>
@@ -501,6 +540,17 @@ footer{padding:36px 0 110px;margin-top:44px;border-top:2px solid var(--ink);colo
     var fab=document.querySelector('.fab'),bn=document.getElementById('topBanner');
     function chk(){fab.classList.toggle('hide',window.scrollY<bn.offsetHeight-80)}
     chk();window.addEventListener('scroll',chk,{passive:true});
+  }catch(e){}
+
+  try{
+    var n=document.getElementById('n12');
+    if(n&&'IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      n.textContent='0%';
+      var io=new IntersectionObserver(function(e){
+        if(!e[0].isIntersecting)return;io.disconnect();var st=null;
+        (function step(t){if(!st)st=t;var p=Math.min((t-st)/1100,1);n.textContent=Math.round(12*p)+'%';if(p<1)requestAnimationFrame(step)})(performance.now());
+      },{threshold:.4});io.observe(n);
+    }
   }catch(e){}
 
   var y=document.getElementById('yr');if(y)y.textContent=new Date().getFullYear();
